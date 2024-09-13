@@ -100,33 +100,99 @@ public class BurgerTown {
 
     }
 
-    public static void solicitarDatos(){
+    /**
+     * Descripcion: Este metodo  es el encargado de solicitar al usuario los precios y unidades vendidas en el dia.
+     * pre: El Scanner reader debe estar inicializado.
+     * pre: Los arreglos precios y unidades deben estar declarados e inicializados.
+     * pos: Los datos que el usuario ingresa en los arreglos precios y unidades se guardan.
+    */
+    public static void solicitarDatos(){ 
 
-     
+        for (int i = 0; i < precios.length; i++) {
+
+            System.out.println("Ingrese el precio del plato vendido: ");
+            double precioACapturar = reader.nextDouble();
+            precios[i] = precioACapturar;
+
+            System.out.println("Ingrese la cantidad del plato vendido: ");
+            int cantidadACapturar = reader.nextInt();
+            unidades[i] = cantidadACapturar;
+        }
     }
+
+    /**
+     * Descripcion: Este metodo  calcula el total de platos que se vendieron en el día
+     * pre: El arreglo de unidades debe estar inicializado y contener valores.
+     * @return devuelve la cantidad total de platos vendidos en el día
+    */
 
     public static int calcularTotalPlatosVendidos(){
 
-        return 0;
+        int totalPlatosVendidos = 0;
+
+        for (int j = 0; j < precios.length; j++){
+            totalPlatosVendidos += unidades[j];
+        }
+        return totalPlatosVendidos;
 
     }
+
+    /**
+     * Descripcion: Este metodo  calcula el precio promedio del total de platos vendidos en el día.
+     * pre: El arreglo de precios y unidades deben estar inicializados y tener valores guardados.
+     * @return devuelve el precio promedio del total de ventas.
+    */
 
     public static double calcularPrecioPromedio(){
 
-        return 0;
+        double preciosSumados = 0;
+        int platosTotales = 0;
+
+        for (int k = 0; k < precios.length; k++){
+            preciosSumados += precios[k];
+            platosTotales += unidades[k];
+        } 
+
+        double precioPromedio =  preciosSumados/platosTotales;
+        return precioPromedio;
 
     }
+
+    /**
+     * Descripcion: Este metodo  calcula el total de platos que se vendieron en el día
+     * pre: El arreglo de precios debe estar inicializado y contener valores.
+     * @return devuelve el total de precios recaudados durante el dia
+    */
 
     public static double calcularVentasTotales(){
 
-        return 0;
+        int precioTotalRecaudado = 0;
+
+        for (int h = 0; h < precios.length; h++){
+            precioTotalRecaudado += precios[h];
+        }
+        return precioTotalRecaudado;
+
 
     }
+
+    /**
+     * Descripcion: Este metodo se encarga de buscar los platos que superaron el limite puesto por el usuario.
+     * para ello se calcula el precio total de todas las unidades vendidas y se compara con el limite ingresado por el usuario.
+     * pre: El arreglo de precios y unidades debe estar inicializado y contener valores.
+     * @return devuelve la cantidad de platos que superan el limite.
+    */
 
     public static int consultarPlatosSobreLimite(double limite){
 
-        return 0;
+        int coincidencia = 0;
 
+        for (int l = 0; l < precios.length; l ++){
+            double totalVentas = precios[l] * unidades[l];
+            if(totalVentas >= limite){
+                coincidencia ++;
+            }
+        }
+        return coincidencia;
     }
-
 }
